@@ -17,6 +17,10 @@
 <link rel="import" href="../app-localize-behavior/app-localize-behavior.html"/>
 <link rel="import" href="css/aha-table-styles.html">
 <style>
+.aha-table-0 .table.aha-table {
+    background: rgb(231,234,237);
+}
+
 .aha-table-0 .table.aha-table .td.aha-table, .aha-table-0 .table.aha-table td.aha-table{
   border-bottom:0px;
 }
@@ -120,18 +124,19 @@
               </template>
             </template>
           </div>
-          <div style="display: inherit;width:100%;position: absolute;" >
-            <div style="margin-left:100px">
-              <span> Bakken Field</span><br>
-              <span> C4718200-2EB6-4E8E-8AEA-80D909E104BB</span><br>
-              <span> 5 Unclaimed Alerts </span><br>
-              <span> 10 Open Cases </span><br>
+          <template is="dom-if" if="[[internalRow.row.showRowDetails]]">
+            <div style="display: inherit;width:100%;position: absolute;" >
+              <div style="margin-left:8%">
+                <span> [[internalRow.row.rowDetails.value.field]]</span><br>
+                <span> [[internalRow.row.rowDetails.value.well-id]]</span><br>
+                <span> [[internalRow.row.rowDetails.value.alert-unclaimed]] Unclaimed Alerts </span><br>
+                <span> [[internalRow.row.rowDetails.value.open-cases]] Open Cases </span><br>
+              </div>
             </div>
-          </div>
-          <div style="display:table-row;height: 80px;background:#2c404c">
-          </div>
+            <div style="display:table-row;height: 80px;background:#2c404c">
+            </div>
         </template>
-
+        </template>
       </div>
 
       <template is="dom-if" if="{{!displayedRows.length}}">
@@ -392,6 +397,9 @@
     },
     _testButtonTap:function(event){
       console.log('test button tap');
+    },
+    _toJsongString : function(o){
+        return JSON.stringify(o);
     },
     _columnChanged: function(info){
       if(this.selectable && this.meta.length === 0) this.push('meta', this._generateMetaForColumn("_selected", "selected", true, "Selected (0)"));
