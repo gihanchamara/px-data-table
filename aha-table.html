@@ -16,7 +16,11 @@
 <link rel="import" href="../px-icon-set/px-icon.html">
 <link rel="import" href="../app-localize-behavior/app-localize-behavior.html"/>
 <link rel="import" href="css/aha-table-styles.html">
-
+<style>
+.aha-table-0 .table.aha-table .td.aha-table, .aha-table-0 .table.aha-table td.aha-table{
+  border-bottom:0px;
+}
+</style>
 <dom-module id="aha-table">
   <template>
     <style include="aha-table-styles"></style>
@@ -29,7 +33,6 @@
       </div>
     </template>
     <div class="scroll-body">
-
       <div id="scrollBodyTableContainer" class$="{{_getTableClass(tableCells, tableColumns)}}" role="grid">
         <!-- Header -->
         <div class="tr" role="row">
@@ -77,6 +80,7 @@
         <template id="recordList" is="dom-repeat" items="{{displayedRows}}" as="internalRow" strip-whitespace>
 
           <div role="row" class$="{{_getRowClass(internalRow,striped)}}">
+
             <!-- Data cells -->
             <template is="dom-repeat" items="{{meta}}" as="column">
               <!-- selected column checkbox or radio button -->
@@ -92,6 +96,7 @@
                   </span>
                 </span>
               </template>
+
               <template id="cellRepeat" is="dom-if" if="{{!_isEqual(column.type, 'selected')}}">
                 <template is="dom-if" if="{{!column.hide}}">
                   <px-data-table-cell
@@ -115,7 +120,18 @@
               </template>
             </template>
           </div>
+          <div style="display: inherit;width:100%;position: absolute;" >
+            <div style="margin-left:100px">
+              <span> Bakken Field</span><br>
+              <span> C4718200-2EB6-4E8E-8AEA-80D909E104BB</span><br>
+              <span> 5 Unclaimed Alerts </span><br>
+              <span> 10 Open Cases </span><br>
+            </div>
+          </div>
+          <div style="display:table-row;height: 80px;background:#2c404c">
+          </div>
         </template>
+
       </div>
 
       <template is="dom-if" if="{{!displayedRows.length}}">
@@ -374,7 +390,9 @@
     attached: function() {
       this._isAttached = true;
     },
-
+    _testButtonTap:function(event){
+      console.log('test button tap');
+    },
     _columnChanged: function(info){
       if(this.selectable && this.meta.length === 0) this.push('meta', this._generateMetaForColumn("_selected", "selected", true, "Selected (0)"));
 
