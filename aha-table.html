@@ -34,6 +34,26 @@
      padding-top: 0;
      padding-bottom: 0;
 }
+.aha-table-0 .expanded-row{
+  background: white;
+}
+
+.aha-table-0 .detail-row{
+  display   : inherit;
+  position  : absolute;
+  background:white;
+  width     :33%
+}
+
+.aha-table-0 .detail-dummy-row{
+  display:table-row;
+  height: 5em;
+  background:white
+}
+.aha-table-0 .detail-row .row-details{
+  margin-left:25%;
+}
+
 </style>
 <dom-module id="aha-table">
   <template>
@@ -137,19 +157,20 @@
           <!-- <div style="display:table-row;">
             [[_toJsongString(internalRow.row)]]
           </div> -->
-          <!-- <template is="dom-if" if="{{_isEqual2(internalRow.row.showDetails,'true')}}"> -->
-          <template id="detailView" is="dom-if" if="{{_isEqual2(internalRow.row.showDetails, 'true')}}">
-            <div style="display: inherit;width:100%;position: absolute;" >
-              <div style="margin-left:8%">
+          <!-- <template id="detailView" is="dom-if" if="{{_isEqual2(internalRow.row.showDetails, 'true')}}"> -->
+            <div class="hidden detail-row" >
+              <div class="row-details">
                 <span> [[internalRow.row.wellDetails.value.field]]</span><br>
                 <span> [[internalRow.row.wellDetails.value.well-id]]</span><br>
                 <span> [[internalRow.row.wellDetails.value.alert-unclaimed]] Unclaimed Alerts </span><br>
                 <span> [[internalRow.row.wellDetails.value.open-cases]] Open Cases </span><br>
               </div>
             </div>
-            <div style="display:table-row;height: 80px;background:#2c404c">
+            <div id="dummyRow" style="" class="hidden detail-dummy-row">
+              <template is="dom-repeat" items="{{meta}}" as="column">
+                <div style="display: table-cell;"></div>
+              </template>
             </div>
-        </template>
         </template>
       </div>
 
@@ -385,6 +406,9 @@
                   {"key":"3","val":"50"},
                   {"key":"4","val":"100"}];
         }
+      },
+      expandedRow:{
+        type:Object
       }
     },
 
@@ -393,7 +417,9 @@
       '_updateDisplayedRows(pageSize)', // when the size of the page changes
       '_dataChanged(data.*)',
       '_computeColumnChooserItems(meta, meta.*)',
-      '_computeIfColumnFilterEnabled(meta.splices, filterable, meta.*, selectable, singleSelect)'
+      '_computeIfColumnFilterEnabled(meta.splices, filterable, meta.*, selectable, singleSelect)',
+      '_expanded(row)',
+      '_expanded(internalRow.row)'
     ],
 
     listeners: {
@@ -1054,7 +1080,7 @@
           this.set('sortedColumn', '');
         }
       }
-      this._showHideDetails(row);
+      this._showHideDetails(event);
       this.fire('px-row-click', detail); // fire the event after it is marked selected
     },
     _clickCell: function(evt) {
@@ -1636,17 +1662,36 @@
         return this._isFilterableColumn(val);
       }.bind(this)));
     },
-    _showHideDetails:function(row){
-      //TODO:fix
-      row.row.showDetails = true;
-      row.showDetails = true;
-      this._updateDisplayedRows();
-    //  console.log(JSON.stringify(row));
+    _showHideDetails:function(event){
+      let currentRow = event.currentTarget.parentNode;
+      if(currentRow != this.expandedRow){
+        this._expandedRow(currentRow);
+        if(this.expandedRow){
+          this._collapsedRow(this.expandedRow);
+        }
+        this.expandedRow =currentRow;
+      }else{
+        //toggle selected row
+        this._collapsedRow(currentRow);
+        this.expandedRow = '';
+      }
     },
-    _isEqual2: function(source, target) {
-      //TODO:remove
-      console.log('_isEqual2',source === target);
-      return source === target;
+
+    _expandedRow:function(row){
+      //
+      let detailNode = row.nextElementSibling;
+      let placeHolder = detailNode.nextElementSibling;
+      detailNode.classList.remove('hidden');
+      placeHolder.classList.remove('hidden');
+      row.classList.add('expanded-row');
+    },
+    _collapsedRow:function(row){
+      let detailNode = row.nextElementSibling;
+      let placeHolder = detailNode.nextElementSibling;
+      detailNode.classList.add('hidden');
+      placeHolder.classList.add('hidden');
+      row.classList.remove('expanded-row');
     }
+
   });
 </script>
