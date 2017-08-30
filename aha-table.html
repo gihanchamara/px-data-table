@@ -20,38 +20,29 @@
 .aha-table-0 .table.aha-table {
     background: rgb(231,234,237);
 }
+.aha-table-0 .table.aha-table .td.aha-table, .aha-table-0 .table.aha-table .th.aha-table, .aha-table-0 .table.aha-table td.aha-table, .aha-table-0 .table.aha-table th.aha-table {
+    padding: 0px;
+}
 /*hide bottom border for detail view*/
 .aha-table-0 .table.aha-table .td.aha-table, .aha-table-0 .table.aha-table td.aha-table{
   border-bottom:0px;
+  border-top:0px;
 }
 /*fie alignment of html content*/
 .px-data-table-cell-0 .viewing.px-data-table-cell {
   height: auto;
 }
-
 /*Hide pagination padding*/
 .aha-table-0 .pagination.aha-table {
-     padding-top: 0;
-     padding-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .aha-table-0 .expanded-row{
   background: white;
 }
 
 .aha-table-0 .detail-row{
-  display   : inherit;
-  position  : absolute;
   background:white;
-  width     :33%
-}
-
-.aha-table-0 .detail-dummy-row{
-  display:table-row;
-  height: 5em;
-  background:white
-}
-.aha-table-0 .detail-row .row-details{
-  margin-left:25%;
 }
 
 </style>
@@ -67,12 +58,12 @@
       </div>
     </template>
     <div class="scroll-body">
-      <div id="scrollBodyTableContainer" class$="{{_getTableClass(tableCells, tableColumns)}}" role="grid">
+      <table id="scrollBodyTableContainer" class$="{{_getTableClass(tableCells, tableColumns)}}" role="grid">
         <!-- Header -->
-        <div class="tr" role="row">
+        <tr class="tr" role="row">
           <template is="dom-repeat" items="{{meta}}" as="column">
             <template is="dom-if" if="{{!column.hide}}">
-              <span role="columnheader" class$="{{_getHeaderClass(column)}}" draggable="{{enableColumnReorder}}" on-touchstart="_dragStartColumnHeader" on-touchmove="_touchMoveHeader" on-touchleave="_dragLeave" on-touchend="_touchDropColumnHeader" on-dragleave="_dragLeave" on-dragstart="_dragStartColumnHeader" on-dragover="_dragOverHeader" on-drop="_dragDropColumnHeader" on-dragend="_dragEndColumnHeader">
+              <td role="columnheader" class$="{{_getHeaderClass(column)}}" draggable="{{enableColumnReorder}}" on-touchstart="_dragStartColumnHeader" on-touchmove="_touchMoveHeader" on-touchleave="_dragLeave" on-touchend="_touchDropColumnHeader" on-dragleave="_dragLeave" on-dragstart="_dragStartColumnHeader" on-dragover="_dragOverHeader" on-drop="_dragDropColumnHeader" on-dragend="_dragEndColumnHeader">
                 <div class="flex header--container">
                   <span
                     class$="{{_getTextSortingClass(sortable, column, sortedColumn)}}"
@@ -84,15 +75,15 @@
                     </template>
                   </template>
                 </div>
-              </span>
+              </td>
             </template>
           </template>
-        </div>
+        </tr>
 
         <!-- Second Header (filter/select all) -->
-        <div class$="{{_getSecondHeaderClass(_enableFilterRow)}}" role="row">
+        <tr class$="{{_getSecondHeaderClass(_enableFilterRow)}}" role="row">
           <template is="dom-repeat" items="{{meta}}" as="column" id="filterRepeat">
-            <span class$="{{_getFilterHeaderClass(column)}}" role="gridcell" hidden$="{{column.hide}}">
+            <td class$="{{_getFilterHeaderClass(column)}}" role="gridcell" hidden$="{{column.hide}}">
               <!-- select all checkbox -->
               <template is="dom-if" if="{{_isEqual(column.type, 'selected')}}">
                 <span class="flex" hidden$="{{column.hide}}">
@@ -107,19 +98,19 @@
                 <input role="textbox" aria-label="Enter text to filter column" placeholder="{{localize('Filter')}}" class="text-input text-input--filter" type="text" on-input="_filter" />
               </template>
 
-            </span>
+            </td>
           </template>
-        </div>
+        </tr>
         <!-- Data rows -->
         <template id="recordList" is="dom-repeat" items="{{displayedRows}}" as="internalRow" strip-whitespace>
 
-          <div role="row" class$="{{_getRowClass(internalRow,striped)}}">
+          <tr role="row" class$="{{_getRowClass(internalRow,striped)}}">
 
             <!-- Data cells -->
             <template is="dom-repeat" items="{{meta}}" as="column">
               <!-- selected column checkbox or radio button -->
               <template is="dom-if" if="{{_isEqual(column.type, 'selected')}}">
-                <span role="gridcell" class$="{{_getSelectedCellClass(internalRow._selected, internalRow._highlight)}}" hidden$="{{column.hide}}" on-tap="_clickRow">
+                <td role="gridcell" class$="{{_getSelectedCellClass(internalRow._selected, internalRow._highlight)}}" hidden$="{{column.hide}}" on-tap="_clickRow">
                   <span class="flex flex--middle">
                     <template is="dom-if" if="{{!singleSelect}}">
                       <input role="checkbox" aria-label="Click to select row" type="checkbox" checked="{{internalRow._selected::change}}"/>
@@ -128,11 +119,12 @@
                       <input role="checkbox" aria-label="Click to select row" type="radio" name="selected" checked="{{internalRow._selected::change}}"/>
                     </template>
                   </span>
-                </span>
+                </td>
               </template>
 
               <template id="cellRepeat" is="dom-if" if="{{!_isEqual(column.type, 'selected')}}">
                 <template is="dom-if" if="{{!column.hide}}">
+                  <td>
                   <px-data-table-cell
                       on-save="_save"
                       row-highlighted="[[internalRow._highlight]]"
@@ -150,29 +142,24 @@
                       column-name="{{column.name}}"
                       on-tap="_clickCell">
                   </px-data-table-cell>
+                </td>
                 </template>
               </template>
             </template>
-          </div>
-          <!-- <div style="display:table-row;">
-            [[_toJsongString(internalRow.row)]]
-          </div> -->
-          <!-- <template id="detailView" is="dom-if" if="{{_isEqual2(internalRow.row.showDetails, 'true')}}"> -->
-            <div class="hidden detail-row" >
-              <div class="row-details">
-                <span> [[internalRow.row.wellDetails.value.field]]</span><br>
-                <span> [[internalRow.row.wellDetails.value.well-id]]</span><br>
-                <span> [[internalRow.row.wellDetails.value.alert-unclaimed]] Unclaimed Alerts </span><br>
-                <span> [[internalRow.row.wellDetails.value.open-cases]] Open Cases </span><br>
-              </div>
-            </div>
-            <div id="dummyRow" style="" class="hidden detail-dummy-row">
-              <template is="dom-repeat" items="{{meta}}" as="column">
-                <div style="display: table-cell;"></div>
-              </template>
-            </div>
+          </tr>
+          <tr class="detail-row hidden" >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="5">
+              <span> [[internalRow.row.wellDetails.value.field]]</span><br>
+              <span> [[internalRow.row.wellDetails.value.well-id]]</span><br>
+              <span> [[internalRow.row.wellDetails.value.alert-unclaimed]] Unclaimed Alerts </span><br>
+              <span> [[internalRow.row.wellDetails.value.open-cases]] Open Cases </span><br>
+            </td>
+          </tr>
         </template>
-      </div>
+      </table>
 
       <template is="dom-if" if="{{!displayedRows.length}}">
         <div class="flex flex--center no-results">No Results</div>
@@ -1663,7 +1650,7 @@
       }.bind(this)));
     },
     _showHideDetails:function(event){
-      let currentRow = event.currentTarget.parentNode;
+      let currentRow = event.currentTarget.parentNode.parentNode;
       if(currentRow != this.expandedRow){
         this._expandedRow(currentRow);
         if(this.expandedRow){
@@ -1680,16 +1667,12 @@
     _expandedRow:function(row){
       //
       let detailNode = row.nextElementSibling;
-      let placeHolder = detailNode.nextElementSibling;
       detailNode.classList.remove('hidden');
-      placeHolder.classList.remove('hidden');
       row.classList.add('expanded-row');
     },
     _collapsedRow:function(row){
       let detailNode = row.nextElementSibling;
-      let placeHolder = detailNode.nextElementSibling;
       detailNode.classList.add('hidden');
-      placeHolder.classList.add('hidden');
       row.classList.remove('expanded-row');
     }
 
