@@ -23,10 +23,9 @@
 .aha-table-0 .table.aha-table .td.aha-table, .aha-table-0 .table.aha-table .th.aha-table, .aha-table-0 .table.aha-table td.aha-table, .aha-table-0 .table.aha-table th.aha-table {
     padding: 0px;
 }
-/*hide bottom border for detail view*/
-.aha-table-0 .table.aha-table .td.aha-table, .aha-table-0 .table.aha-table td.aha-table{
+/*Fix border*/
+.aha-table-0 .table.aha-table .td.aha-table, .aha-table-0 .table.aha-table td.aha-table {
   border-bottom:0px;
-  border-top:0px;
 }
 /*fie alignment of html content*/
 .px-data-table-cell-0 .viewing.px-data-table-cell {
@@ -149,9 +148,7 @@
           </tr>
           <tr class="detail-row hidden" >
             <td></td>
-            <td></td>
-            <td></td>
-            <td colspan="5">
+            <td colspan="3">
               <span> [[internalRow.row.wellDetails.value.field]]</span><br>
               <span> [[internalRow.row.wellDetails.value.well-id]]</span><br>
               <span> [[internalRow.row.wellDetails.value.alert-unclaimed]] Unclaimed Alerts </span><br>
