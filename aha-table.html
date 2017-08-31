@@ -20,6 +20,10 @@
 .aha-table-0 .table.aha-table {
     background: rgb(231,234,237);
 }
+.aha-table-0 .table.aha-table.aha-table .td.td.aha-table {
+    border-top: 0px;
+}
+
 .aha-table-0 .table.aha-table .td.aha-table, .aha-table-0 .table.aha-table .th.aha-table, .aha-table-0 .table.aha-table td.aha-table, .aha-table-0 .table.aha-table th.aha-table {
     padding: 0px;
 }
@@ -42,6 +46,12 @@
 
 .aha-table-0 .detail-row{
   background:white;
+  border-top: 0px;
+}
+
+.aha-table-0 .detail-col{
+  background: white;
+  border: 0px;
 }
 
 </style>
@@ -147,8 +157,8 @@
             </template>
           </tr>
           <tr class="detail-row hidden" >
-            <td></td>
-            <td colspan="3">
+            <td class="detail-col" style="border:0px"></td>
+            <td colspan="3" class="detail-col" style="border:0px">
               <span> [[internalRow.row.wellDetails.value.field]]</span><br>
               <span> [[internalRow.row.wellDetails.value.well-id]]</span><br>
               <span> [[internalRow.row.wellDetails.value.alert-unclaimed]] Unclaimed Alerts </span><br>
