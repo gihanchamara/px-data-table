@@ -20,8 +20,20 @@
 .aha-table-0 .table.aha-table {
     background: rgb(231,234,237);
 }
+
+.aha-table-0 .col-header{
+  border-top: 0px !important;
+  border-bottom: 1px solid !important;
+}
+
 .aha-table-0 .table.aha-table.aha-table .td.td.aha-table {
     border-top: 0px;
+}
+
+.aha-table-0 .header--container.aha-table {
+    justify-content: space-between;
+    padding-top: 1.5em;
+    padding-bottom: 0.5em;
 }
 
 .aha-table-0 .table.aha-table .td.aha-table, .aha-table-0 .table.aha-table .th.aha-table, .aha-table-0 .table.aha-table td.aha-table, .aha-table-0 .table.aha-table th.aha-table {
@@ -54,6 +66,7 @@
   border: 0px;
 }
 
+
 </style>
 <dom-module id="aha-table">
   <template>
@@ -72,7 +85,7 @@
         <tr class="tr" role="row">
           <template is="dom-repeat" items="{{meta}}" as="column">
             <template is="dom-if" if="{{!column.hide}}">
-              <td role="columnheader" class$="{{_getHeaderClass(column)}}" draggable="{{enableColumnReorder}}" on-touchstart="_dragStartColumnHeader" on-touchmove="_touchMoveHeader" on-touchleave="_dragLeave" on-touchend="_touchDropColumnHeader" on-dragleave="_dragLeave" on-dragstart="_dragStartColumnHeader" on-dragover="_dragOverHeader" on-drop="_dragDropColumnHeader" on-dragend="_dragEndColumnHeader">
+              <td role="columnheader" class$="{{_getHeaderClass(column)}} col-header" draggable="{{enableColumnReorder}}" on-touchstart="_dragStartColumnHeader" on-touchmove="_touchMoveHeader" on-touchleave="_dragLeave" on-touchend="_touchDropColumnHeader" on-dragleave="_dragLeave" on-dragstart="_dragStartColumnHeader" on-dragover="_dragOverHeader" on-drop="_dragDropColumnHeader" on-dragend="_dragEndColumnHeader">
                 <div class="flex header--container">
                   <span
                     class$="{{_getTextSortingClass(sortable, column, sortedColumn)}}"
