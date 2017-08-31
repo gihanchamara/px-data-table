@@ -66,6 +66,27 @@
   border: 0px;
 }
 
+.well-desc{
+  margin: 0px 5px 5px 5px;
+  color: rgb(134,156,169);
+  font-size: 0.9rem;
+}
+.well-name{
+  display:block;
+  clear: both;
+}
+.well-id{
+   clear: both;
+}
+.case-section{
+  margin-top:1em;
+}
+.unclaimed-alert{
+  margin-right:3em;
+}
+.open-cases{
+
+}
 
 </style>
 <dom-module id="aha-table">
@@ -172,10 +193,20 @@
           <tr class="detail-row hidden" >
             <td class="detail-col" style="border:0px"></td>
             <td colspan="3" class="detail-col" style="border:0px">
-              <span> [[internalRow.row.wellDetails.value.field]]</span><br>
-              <span> [[internalRow.row.wellDetails.value.well-id]]</span><br>
-              <span> [[internalRow.row.wellDetails.value.alert-unclaimed]] Unclaimed Alerts </span><br>
-              <span> [[internalRow.row.wellDetails.value.open-cases]] Open Cases </span><br>
+              <div class="well-desc">
+                <div class="well-desc">
+                  <span class="well-name">
+                    [[internalRow.row.wellDetails.value.field]]
+                  </span>
+                  <span class="well-id">
+                    [[internalRow.row.wellDetails.value.well-id]]
+                  </span>
+
+                  <div class="case-section">
+                    <span class="unclaimed-alert">[[internalRow.row.wellDetails.value.alert-unclaimed]] Unclaimed Alerts</span>
+                    <span class="open-cases">[[internalRow.row.wellDetails.value.open-cases]] Open Cases</span>
+                  </div>
+                </div>
             </td>
           </tr>
         </template>
