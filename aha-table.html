@@ -89,15 +89,15 @@
   display: inline-block;
 }
 
-#well-dtl-container { width: 80%; margin: 0px 5px 5px 5px; background-color: grey; padding: 20px; color: rgb(117, 144, 155); font-size: 0.9rem; }
-.row { height: 150px; margin-bottom: 20px; position: relative; }
+#well-dtl-container { width: 95%; margin: 0px 5px 5px 5px; padding: 5px; color: rgb(117, 144, 155); font-size: 0.9rem; }
+.row { height: 25px; margin: auto; position: relative; }
 .row div { height: 100%; }
-.single { background-color: white; }
+/*.single { background-color: white; }*/
 .column-2 { width: 48%; }
 .column-3 { width: 30%; }
-.left { background-color: yellow; float: left; }
-.center { float: left; margin: 0 5%; background-color: orange; }
-.right { background-color: green; float: right; }
+.left { float: left; }
+.center { float: left; margin: 0 5%; }
+.right { float: right; }
 .para { font-size: 1.2rem; }
 
 </style>
@@ -209,8 +209,16 @@
                     <div class="row single">[[internalRow.row.wellDetails.value.field]]</div>
                     <div class="row single">[[internalRow.row.wellDetails.value.well-id]]</div>
                     <div class="row double">
-                        <div class="column-2 left"><p class="para">[[internalRow.row.wellDetails.value.alert-unclaimed]]</p>&nbsp;Unclaimed Alerts</div>
-                        <div class="column-2 right"><p class="para">[[internalRow.row.wellDetails.value.open-cases]]</p>&nbsp;Open Cases</div>
+                        <div class="column-2 left">
+                            <span class="unclaimed-alert">
+                                <font class="para">[[internalRow.row.wellDetails.value.alert-unclaimed]]</font>&nbsp;Unclaimed Alerts
+                            </span>
+                        </div>
+                        <div class="column-2 right">
+                            <span class="open-cases">
+                                <font class="para">[[internalRow.row.wellDetails.value.open-cases]]</font>&nbsp;Open Cases
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <!-- <div class="well-desc">
