@@ -89,6 +89,17 @@
   display: inline-block;
 }
 
+#well-dtl-container { width: 80%; margin: 0px 5px 5px 5px; background-color: grey; padding: 20px; color: rgb(117, 144, 155); font-size: 0.9rem; }
+.row { height: 150px; margin-bottom: 20px; position: relative; }
+.row div { height: 100%; }
+.single { background-color: white; }
+.column-2 { width: 48%; }
+.column-3 { width: 30%; }
+.left { background-color: yellow; float: left; }
+.center { float: left; margin: 0 5%; background-color: orange; }
+.right { background-color: green; float: right; }
+.para { font-size: 1.2rem; }
+
 </style>
 <dom-module id="aha-table">
   <template>
@@ -191,22 +202,30 @@
               </template>
             </template>
           </tr>
-          <tr class="detail-row hidden" >
+          <tr class="detail-row hidden">
             <td class="detail-col" style="border:0px"></td>
             <td colspan="3" class="detail-col" style="border:0px">
-                <div class="well-desc">
+                <div id="well-dtl-container">
+                    <div class="row single">[[internalRow.row.wellDetails.value.field]]</div>
+                    <div class="row single">[[internalRow.row.wellDetails.value.well-id]]</div>
+                    <div class="row double">
+                        <div class="column-2 left"><p class="para">[[internalRow.row.wellDetails.value.alert-unclaimed]]</p>&nbsp;Unclaimed Alerts</div>
+                        <div class="column-2 right"><p class="para">[[internalRow.row.wellDetails.value.open-cases]]</p>&nbsp;Open Cases</div>
+                    </div>
+                </div>
+                <!-- <div class="well-desc">
                   <span class="well-name">
                     [[internalRow.row.wellDetails.value.field]]
                   </span>
-                  <!-- <span class="well-id">
+                  <span class="well-id">
                     [[internalRow.row.wellDetails.value.well-id]]
-                  </span> -->
+                  </span>
 
                   <div class="case-section">
                     <span class="unclaimed-alert"><p style="font-size: 1.2 rem;">[[internalRow.row.wellDetails.value.alert-unclaimed]]</p>&nbsp;Unclaimed Alerts</span>
-                    <span class="open-cases"><p style="font-size: 1.2 rem;">[[internalRow.row.wellDetails.value.open-cases]]</p>&nbsp;Open Cases</span>
+                    <span class="open-cases"><p style="font-size: 1.2 rem;">[[internalRow.row.wellDetails.value.open-cases]] Open Cases</span>
                   </div>
-                </div>
+                </div> -->
             </td>
           </tr>
         </template>
