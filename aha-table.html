@@ -90,8 +90,8 @@
 }
 
 #well-dtl-container { width: 95%; margin: 0px 5px 5px 5px; padding: 5px; color: rgb(117, 144, 155); font-size: 0.9rem; }
-.row { height: 25px; margin: auto; position: relative; }
-.row div { height: 100%; }
+.row-1 { height: 25px; margin: auto; position: relative; }
+.row-1 div { height: 100%; }
 /*.single { background-color: white; }*/
 .column-2 { width: 48%; }
 .column-3 { width: 30%; }
@@ -206,19 +206,20 @@
             <td class="detail-col" style="border:0px"></td>
             <td colspan="3" class="detail-col" style="border:0px">
                 <div id="well-dtl-container">
-                    <div class="row single">[[internalRow.row.wellDetails.value.field]]</div>
-                    <div class="row single">[[internalRow.row.wellDetails.value.well-id]]</div>
-                    <div class="row double">
-                        <div class="column-2 left">
+                    <div class="row-1 single">[[internalRow.row.wellDetails.value.field]]</div>
+                    <div class="row-1 single">[[internalRow.row.wellDetails.value.well-id]]</div>
+                    <div class="row-1 triple">
+                        <div class="column-3 left">
                             <span class="unclaimed-alert">
                                 <font class="para">[[internalRow.row.wellDetails.value.alert-unclaimed]]</font>&nbsp;Unclaimed Alerts
                             </span>
                         </div>
-                        <div class="column-2 right">
+                        <div class="column-3 center">
                             <span class="open-cases">
                                 <font class="para">[[internalRow.row.wellDetails.value.open-cases]]</font>&nbsp;Open Cases
                             </span>
                         </div>
+                        <div class="column-3 right"></div>
                     </div>
                 </div>
                 <!-- <div class="well-desc">
