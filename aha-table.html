@@ -68,7 +68,7 @@
 
 .well-desc{
   margin: 0px 5px 5px 5px;
-  color: rgb(117, 144, 155);
+  color: rgb(134,156,169);
   font-size: 0.9rem;
 }
 .well-name{
@@ -82,22 +82,12 @@
   margin-top:1em;
 }
 .unclaimed-alert{
-  /*margin-right:3em;*/
+  margin-right:3em;
   display: inline-block;
 }
 .open-cases{
   display: inline-block;
 }
-
-#well-dtl-container { width: 95%; margin: 0px 5px 5px 5px; padding: 0px 0px 0px 5px; color: rgb(117, 144, 155); font-size: 1rem; }
-.row-1 { height: 25px; margin: auto; position: relative; }
-.row-1 div { height: 100%; }
-/*.single { background-color: white; }*/
-.column-2 { width: 48%; }
-.column-3 { width: 30%; }
-.left { float: left; }
-.center { float: left; margin: 0 5%; }
-.right { float: right; }
 .para { font-size: 1.2rem; }
 
 </style>
@@ -202,39 +192,23 @@
               </template>
             </template>
           </tr>
-          <tr class="detail-row hidden">
+          <tr class="detail-row hidden" >
             <td class="detail-col" style="border:0px"></td>
             <td colspan="3" class="detail-col" style="border:0px">
-                <div id="well-dtl-container">
-                    <div class="row-1 single">[[internalRow.row.wellDetails.value.field]]</div>
-                    <div class="row-1 single">[[internalRow.row.wellDetails.value.well-id]]</div>
-                    <div class="row-1 triple">
-                        <div class="column-3 left">
-                            <span class="unclaimed-alert">
-                                <font class="para">[[internalRow.row.wellDetails.value.alert-unclaimed]]</font>&nbsp;Unclaimed Alerts
-                            </span>
-                        </div>
-                        <div class="column-3 center">
-                            <span class="open-cases">
-                                <font class="para">[[internalRow.row.wellDetails.value.open-cases]]</font>&nbsp;Open Cases
-                            </span>
-                        </div>
-                        <div class="column-3 right"></div>
-                    </div>
-                </div>
-                <!-- <div class="well-desc">
+              <div class="well-desc">
+                <div class="well-desc">
                   <span class="well-name">
                     [[internalRow.row.wellDetails.value.field]]
                   </span>
-                  <span class="well-id">
+                  <!-- <span class="well-id">
                     [[internalRow.row.wellDetails.value.well-id]]
-                  </span>
+                  </span> -->
 
                   <div class="case-section">
-                    <span class="unclaimed-alert"><p style="font-size: 1.2 rem;">[[internalRow.row.wellDetails.value.alert-unclaimed]]</p>&nbsp;Unclaimed Alerts</span>
-                    <span class="open-cases"><p style="font-size: 1.2 rem;">[[internalRow.row.wellDetails.value.open-cases]] Open Cases</span>
+                    <span class="unclaimed-alert"><font class="para">[[internalRow.row.wellDetails.value.alert-unclaimed]]</font> Unclaimed Alerts</span>
+                    <span class="open-cases"><font class="para">[[internalRow.row.wellDetails.value.open-cases]]</font> Open Cases</span>
                   </div>
-                </div> -->
+                </div>
             </td>
           </tr>
         </template>
