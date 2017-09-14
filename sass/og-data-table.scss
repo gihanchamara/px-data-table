@@ -1,0 +1,72 @@
+.table.aha-table {
+    background: rgb(231,234,237) !important;
+}
+
+.col-header{
+  border-top: 0px !important;
+  border-bottom: 1px solid !important;
+}
+
+.table.aha-table.aha-table .td.td.aha-table {
+    border-top: 0px;
+}
+
+.header--container.aha-table {
+    justify-content: space-between;
+    padding-top: 1.5em;
+    padding-bottom: 0.5em;
+}
+
+.table.aha-table .td.aha-table, .table.aha-table .th.aha-table, .table.aha-table td.aha-table, .table.aha-table th.aha-table {
+    padding: 0px;
+}
+/*Fix border*/
+.table.aha-table .td.aha-table, .table.aha-table td.aha-table {
+  border-bottom:0px;
+}
+/*fie alignment of html content*/
+.px-data-table-cell-0 .viewing.px-data-table-cell {
+  height: auto;
+}
+/*Hide pagination padding*/
+.pagination.aha-table {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.expanded-row{
+  background: white;
+}
+
+.detail-row{
+  background:white;
+  border-top: 0px;
+}
+
+.detail-col{
+  background: white;
+  border: 0px;
+}
+
+.well-desc{
+  margin: 0px 5px 5px 5px;
+  color: rgb(134,156,169);
+  font-size: 0.9rem;
+}
+.well-name{
+  display:block;
+  clear: both;
+}
+.well-id{
+   clear: both;
+}
+.case-section{
+  margin-top:1em;
+}
+.unclaimed-alert{
+  margin-right: 2em;
+  display: inline-block;
+}
+.open-cases{
+  display: inline-block;
+}
+.para { font-size: 1.2rem; }

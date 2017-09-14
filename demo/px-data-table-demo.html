@@ -38,6 +38,7 @@
 
         <div>
           <px-data-table
+              include-all-columns="{{props.includeAllColumns.value}}"
               table-data="{{props.tableData.value}}"
               striped="{{props.striped.value}}"
               filterable="{{props.filterable.value}}"
@@ -46,7 +47,7 @@
               single-select="{{props.singleSelect.value}}"
               show-column-chooser="{{props.showColumnChooser.value}}"
               hide-pagination-control="{{props.hidePaginationControl.value}}"
-              include-all-columns="{{props.includeAllColumns.value}}"
+
               language="{{props.language.value}}">
               <px-data-table-column name="first" placeholder="First Name" filterable sortable editable></px-data-table-column>
           </px-data-table>
@@ -84,6 +85,16 @@
         type: Array,
         value: function(){
           return [
+            { configName: "OG-Custom",
+              striped: false,
+              filterable: false,
+              sortable: true,
+              selectable: true,
+              singleSelect: false,
+              showColumnChooser: true,
+              hidePaginationControl: true,
+              includeAllColumns: true },
+
             { configName: "Simple",
               configReset: true },
 
@@ -141,7 +152,7 @@
 
       selectable: {
         type: Boolean,
-        defaultValue: false,
+        defaultValue: true,
         inputType: 'toggle'
       },
 
@@ -159,13 +170,13 @@
 
       hidePaginationControl: {
         type: Boolean,
-        defaultValue: false,
+        defaultValue: true,
         inputType: 'toggle'
       },
 
       includeAllColumns: {
         type: Boolean,
-        defaultValue: false,
+        defaultValue: true,
         inputType: 'toggle'
       },
 

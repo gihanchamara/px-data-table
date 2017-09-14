@@ -15,85 +15,14 @@
 <link rel="import" href="../px-icon-set/px-icon-set.html">
 <link rel="import" href="../px-icon-set/px-icon.html">
 <link rel="import" href="../app-localize-behavior/app-localize-behavior.html"/>
+<link rel="import" href="css/og-data-table-styles.html">
 <link rel="import" href="css/aha-table-styles.html">
-<style>
-.aha-table-0 .table.aha-table {
-    background: rgb(231,234,237);
-}
 
-.aha-table-0 .col-header{
-  border-top: 0px !important;
-  border-bottom: 1px solid !important;
-}
 
-.aha-table-0 .table.aha-table.aha-table .td.td.aha-table {
-    border-top: 0px;
-}
-
-.aha-table-0 .header--container.aha-table {
-    justify-content: space-between;
-    padding-top: 1.5em;
-    padding-bottom: 0.5em;
-}
-
-.aha-table-0 .table.aha-table .td.aha-table, .aha-table-0 .table.aha-table .th.aha-table, .aha-table-0 .table.aha-table td.aha-table, .aha-table-0 .table.aha-table th.aha-table {
-    padding: 0px;
-}
-/*Fix border*/
-.aha-table-0 .table.aha-table .td.aha-table, .aha-table-0 .table.aha-table td.aha-table {
-  border-bottom:0px;
-}
-/*fie alignment of html content*/
-.px-data-table-cell-0 .viewing.px-data-table-cell {
-  height: auto;
-}
-/*Hide pagination padding*/
-.aha-table-0 .pagination.aha-table {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.aha-table-0 .expanded-row{
-  background: white;
-}
-
-.aha-table-0 .detail-row{
-  background:white;
-  border-top: 0px;
-}
-
-.aha-table-0 .detail-col{
-  background: white;
-  border: 0px;
-}
-
-.well-desc{
-  margin: 0px 5px 5px 5px;
-  color: rgb(134,156,169);
-  font-size: 0.9rem;
-}
-.well-name{
-  display:block;
-  clear: both;
-}
-.well-id{
-   clear: both;
-}
-.case-section{
-  margin-top:1em;
-}
-.unclaimed-alert{
-  margin-right: 2em;
-  display: inline-block;
-}
-.open-cases{
-  display: inline-block;
-}
-.para { font-size: 1.2rem; }
-
-</style>
 <dom-module id="aha-table">
   <template>
     <style include="aha-table-styles"></style>
+    <style include="og-data-table-styles"></style>
     <content id="columndefs"></content>
 
     <template is="dom-if" if="{{showColumnChooser}}">
