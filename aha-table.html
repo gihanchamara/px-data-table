@@ -36,7 +36,7 @@
         <!-- Header -->
         <tr class="tr" role="row">
           <template is="dom-repeat" items="{{meta}}" as="column">
-            <template is="dom-if" if="{{!column.hide}}">
+            <template is="dom-if" if="{{_showColumn(column)}}">
               <td role="columnheader" class$="{{_getHeaderClass(column)}} col-header" draggable="{{enableColumnReorder}}" on-touchstart="_dragStartColumnHeader" on-touchmove="_touchMoveHeader" on-touchleave="_dragLeave" on-touchend="_touchDropColumnHeader" on-dragleave="_dragLeave" on-dragstart="_dragStartColumnHeader" on-dragover="_dragOverHeader" on-drop="_dragDropColumnHeader" on-dragend="_dragEndColumnHeader">
                 <div class="flex header--container">
                   <span
@@ -84,7 +84,7 @@
             <template is="dom-repeat" items="{{meta}}" as="column">
               <!-- selected column checkbox or radio button -->
               <template is="dom-if" if="{{_isEqual(column.type, 'selected')}}">
-                <td role="gridcell" class$="{{_getSelectedCellClass(internalRow._selected, internalRow._highlight)}}" hidden$="{{column.hide}}" on-tap="_clickRow">
+                <td role="gridcell" class$="{{_getSelectedCellClass(internalRow._selected, internalRow._highlight)}}" hidden$="!_showColumn(column)" on-tap="_clickRow">
                   <span class="flex flex--middle">
                     <template is="dom-if" if="{{!singleSelect}}">
                       <input role="checkbox" aria-label="Click to select row" type="checkbox" checked="{{internalRow._selected::change}}"/>
@@ -97,7 +97,7 @@
               </template>
 
               <template id="cellRepeat" is="dom-if" if="{{!_isEqual(column.type, 'selected')}}">
-                <template is="dom-if" if="{{!column.hide}}">
+                <template is="dom-if" if="{{_showColumn(column)}}">
                   <td>
                   <px-data-table-cell
                       on-save="_save"
@@ -121,25 +121,26 @@
               </template>
             </template>
           </tr>
-          <tr class="detail-row hidden" >
-            <td class="detail-col" style="border:0px"></td>
-            <td colspan="3" class="detail-col" style="border:0px">
-              <div class="well-desc">
-                <div class="well-desc">
-                  <span class="well-name">
-                    [[internalRow.row.wellDetails.value.field]]
-                  </span>
-                  <!-- <span class="well-id">
-                    [[internalRow.row.wellDetails.value.well-id]]
-                  </span> -->
-
-                  <div class="case-section">
-                    <span class="unclaimed-alert"><font class="para">[[internalRow.row.wellDetails.value.alert-unclaimed]]</font> Unclaimed Alerts</span>
-                    <span class="open-cases"><font class="para">[[internalRow.row.wellDetails.value.open-cases]]</font> Open Cases</span>
-                  </div>
-                </div>
-            </td>
-          </tr>
+          <!--Description if available-->
+          <template is="dom-if" if="{{_showRowDetails(internalRow)}}">
+            <tr class="detail-row hidden">
+              <td class="detail-col" clospan ="{{_rowDetailColumn(internalRow)}}" style="border:0px"></td>
+              <td colspan$="{{_rowDetailColSpan(internalRow)}}" class="detail-col" style="border:0px">
+                <px-data-table-cell
+                    row-highlighted="[[internalRow._highlight]]"
+                    cell-highlighted="false"
+                    cell-selected="[[internalRow._selected]]"
+                    cell-type="{{internalRow.row.rowDetails.value.type}}"
+                    cell-display-value="{{internalRow.row.rowDetails.value.data}}"
+                    dropdown-items="{}"
+                    placeholder=""
+                    cell-value=""
+                    cell-editable="false"
+                    column-name="detail">
+                </px-data-table-cell>
+              </td>
+            </tr>
+          </template>
         </template>
       </table>
 
@@ -403,6 +404,9 @@
     },
     attached: function() {
       this._isAttached = true;
+    },
+    _test:function(param){
+      console.log('test button tap');
     },
     _testButtonTap:function(event){
       console.log('test button tap');
@@ -1656,6 +1660,18 @@
       let detailNode = row.nextElementSibling;
       detailNode.classList.add('hidden');
       row.classList.remove('expanded-row');
+    },
+    _showColumn:function(column){
+      return !column.hide && (column.name !== 'rowDetails');
+    },
+    _showRowDetails:function(param){
+      return (typeof param.row.rowDetails !== 'undefined');
+    },
+    _rowDetailColSpan:function(param){
+      return param.row.rowDetails.value.colSpan;
+    },
+    _rowDetailColumn:function(param){
+      return param.row.rowDetails.value.colPad;
     }
 
   });

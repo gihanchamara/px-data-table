@@ -121,7 +121,7 @@
     demoProps: {
       tableData: {
         type: Object,
-        defaultValue: [{"first":"Valentine","last":"Meyer","email":"valentinemeyer@scentric.com"},{"first":"Silva","last":"Alexander","email":"silvaalexander@gmail.com"},{"first":"Hopkins","last":"Wong","email":"hopkinswong@hotmail.com"},{"first": "Joe","last": "Sherman","email": "joejoe@yahoo.com"},{"first": "Jane","last": "Bartlett","email": "jane@scentric.com"}],
+        defaultValue: [{"first":"Valentine","last":"Meyer","email":"valentinemeyer@scentric.com", "rowDetails":{"colPad":1,"colSpan":2,"type":"html","data":"hello world"}},{"first":"Silva","last":"Alexander","email":"silvaalexander@gmail.com"},{"first":"Hopkins","last":"Wong","email":"hopkinswong@hotmail.com"},{"first": "Joe","last": "Sherman","email": "joejoe@yahoo.com"},{"first": "Jane","last": "Bartlett","email": "jane@scentric.com"}],
         inputType: 'code:JSON'
       },
 
@@ -152,7 +152,7 @@
 
       selectable: {
         type: Boolean,
-        defaultValue: true,
+        defaultValue: false,
         inputType: 'toggle'
       },
 
