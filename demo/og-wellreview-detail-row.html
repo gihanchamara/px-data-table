@@ -1,0 +1,49 @@
+<dom-module id="og-wellreview-detail-row">
+  <template>
+  <style>
+  .well-desc{    
+    color: rgb(134,156,169);
+    font-size: 0.9rem;
+  }
+  .well-name{
+    display:block;
+    clear: both;
+  }
+  .well-id{
+     clear: both;
+  }
+  .case-section{
+    margin-top:1em;
+  }
+  .unclaimed-alert{
+    margin-right: 2em;
+    display: inline-block;
+  }
+  .open-cases{
+    display: inline-block;
+  }
+  </style>
+
+    <div class="well-desc">
+      <div class="well-desc">
+        <span class="well-name">
+          [[field]]
+        </span>
+        <!-- <span class="well-id">
+          [[internalRow.row.wellDetails.value.well-id]]
+        </span> -->
+
+        <div class="case-section">
+          <span class="unclaimed-alert"><font class="para">[[alert-unclaimed]]</font> Unclaimed Alerts</span>
+          <span class="open-cases"><font class="para">[[open-cases]]</font> Open Cases</span>
+        </div>
+      </div>
+    </div>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is : "og-wellreview-detail-row"
+
+  });
+</script>

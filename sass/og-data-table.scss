@@ -7,8 +7,8 @@
   border-bottom: 1px solid !important;
 }
 
-.table.aha-table.aha-table .td.td.aha-table {
-    border-top: 0px;
+.og-table-cell{
+  border : 0px !important;
 }
 
 .header--container.aha-table {
@@ -25,14 +25,20 @@
     border-bottom: 0px;
 }
 
+/* hide space taken by hidden edit sapn in table cell */
+.flex .viewing .empty .px-data-table-cell{
+  display: none;
+}
+
 /*Fix border*/
 .table.aha-table .td.aha-table, .table.aha-table td.aha-table {
   border-bottom:0px;
 }
-/*fie alignment of html content*/
+/*fix alignment of html content*/
 .px-data-table-cell-0 .viewing.px-data-table-cell {
-  height: auto;
+  height: 0px;
 }
+
 /*Hide pagination padding*/
 .pagination.aha-table {
   padding-top: 0;
@@ -42,14 +48,13 @@
   background: white;
 }
 
-.detail-row{
-  background:white;
-  border-top: 0px;
+.tr-detail{
+  background:white;  
 }
 
-.detail-col{
+.td-detail{
   background: white;
-  border: 0px;
+  border: 0px !important;
 }
 
 .para { font-size: 1.2rem; }

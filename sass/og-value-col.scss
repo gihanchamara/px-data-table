@@ -1,0 +1,16 @@
+
+
+@import "px-defaults-design/_settings.defaults.scss";
+
+.tagVal {
+  padding-left: calculateRem(18px) !important;
+}
+
+.spine-icon {
+  --iron-icon-width: 2.5rem;
+  --iron-icon-height: 2.5rem;
+}
+.rate-icon {
+  --iron-icon-width: 1rem;
+  --iron-icon-height: 1rem;
+}

@@ -24,10 +24,11 @@
     "polymer": "^1.7.0",
     "px-tooltip": "^1.0.0",
     "iron-a11y-keys-behavior": "^2.0.0",
-    "px-icon-set": "^2.0.0",
+    "px-icon-set": "^2.0.12",
     "px-validation": "^1.0.0",
     "px-dropdown": "^4.0.0",
-    "app-localize-behavior": "^2.0.0"
+    "app-localize-behavior": "^2.0.0",
+    "font-awesome": "^4.7.0"
   },
   "devDependencies": {
     "px-theme": "^3.0.0",

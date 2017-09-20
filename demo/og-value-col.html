@@ -1,0 +1,81 @@
+
+<link rel="import" href="px-icon-set/px-icon-set.html">
+
+<link rel="import" href="../css/og-value-col-styles.html">
+
+<dom-module id="og-value-col">
+  <template>
+    <style include="og-value-col-styles"></style>
+    <span class="tag-indicator">
+      <span style$="color:{{color}}"hidden$="{{hideIcon}}">
+        <!-- <i class$="fa fa-arrow-{{trendDir}}"></i> -->
+        <px-icon icon="px-nav:{{trendDir}}" class="rate-icon" style="color: {{color}}"></px-icon>
+      </span>
+    </span>
+    <span class$="{{marginClass}}">{{value}}</span>
+  </template>
+  <script>
+    Polymer({
+      is: 'og-value-col',
+      properties: {
+        trend: {
+          type: String,
+          notify: true,
+          value: '0'
+        },
+        correlation: {
+          type: String,
+          notify: true,
+          value: '+'
+        },
+        value: {
+          type: String,
+          notify: true,
+          observer: '_valueChanged'
+        },
+        trendDir: {
+          type: String,
+          notify: true,
+          value: 'up'
+        },
+        color: {
+          type: String,
+          notify: true,
+          value: 'white'
+        },
+        hideIcon: {
+          type: Boolean,
+          value: function() {
+            return true;
+          }
+        }
+      },
+      _valueChanged: function() {
+        if(this.trend == '+') {
+          this.set('trendDir', 'up');
+          this.set('hideIcon', false);
+          if(this.correlation == '+') {
+            this.set('color', '#60bd68');
+          } else if(this.correlation == '-') {
+            this.set('color', '#f15854');
+          } else {
+            this.set('color', '#b1b1bc');
+          }
+        } else if(this.trend == '-') {
+          this.set('trendDir', 'down');
+          this.set('hideIcon', false);
+          if(this.correlation == '+') {
+            this.set('color', '#f15854');
+          } else if(this.correlation == '-') {
+            this.set('color', '#60bd68');
+          } else {
+            this.set('color', '#b1b1bc');
+          }
+        } else {
+          this.set('hideIcon', true);
+          this.set('marginClass', 'tagVal')
+        }
+      }
+    });
+  </script>
+</dom-module>

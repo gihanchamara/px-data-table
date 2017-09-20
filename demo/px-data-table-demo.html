@@ -1,5 +1,5 @@
 <!-- Common imports -->
-<link rel="import" href="../../polymer/polymer.html" />
+<!-- <link rel="import" href="../bower_components/polymer/polymer.html" /> -->
 
 <!-- Common demo imports -->
 <link rel="import" href="../../px-demo/px-demo-header.html" />
@@ -13,6 +13,9 @@
 <!-- Imports for this component -->
 <link rel="import" href="../../px-demo/css/px-demo-styles.html" />
 <link rel="import" href="../px-data-table.html" />
+<link rel="import" href="og-wellreview-detail-row.html" />
+<link rel="import" href="og-status-col.html" />
+<link rel="import" href="og-value-col.html" />
 
 <!-- Demo DOM module -->
 <dom-module id="px-data-table-demo">
@@ -50,6 +53,8 @@
 
               language="{{props.language.value}}">
               <px-data-table-column name="first" placeholder="First Name" filterable sortable editable></px-data-table-column>
+              <px-data-table-column name="status" placeholder="Status" filterable sortable type="html"></px-data-table-column>
+              <px-data-table-column name="oil" placeholder="oil" filterable sortable type="html"></px-data-table-column>
           </px-data-table>
         </div>
       </px-demo-component>
@@ -80,7 +85,6 @@
         type: Object,
         value: function(){ return this.demoProps; }
       },
-
       configs: {
         type: Array,
         value: function(){
@@ -117,14 +121,15 @@
         }
       }
     },
+    rowData:{
 
+    },
     demoProps: {
       tableData: {
         type: Object,
-        defaultValue: [{"first":"Valentine","last":"Meyer","email":"valentinemeyer@scentric.com", "rowDetails":{"colPad":1,"colSpan":2,"type":"html","data":"hello world"}},{"first":"Silva","last":"Alexander","email":"silvaalexander@gmail.com"},{"first":"Hopkins","last":"Wong","email":"hopkinswong@hotmail.com"},{"first": "Joe","last": "Sherman","email": "joejoe@yahoo.com"},{"first": "Jane","last": "Bartlett","email": "jane@scentric.com"}],
+        defaultValue: [{"first":"Valentine","last":"Meyer","email":"valentinemeyer@scentric.com", "rowDetails":{"colPad":1,"colSpan":6,"type":"html","data":"hello world"}},{"first":"Silva","last":"Alexander","email":"silvaalexander@gmail.com"},{"first":"Hopkins","last":"Wong","email":"hopkinswong@hotmail.com"},{"first": "Joe","last": "Sherman","email": "joejoe@yahoo.com"},{"first": "Jane","last": "Bartlett","email": "jane@scentric.com"}],
         inputType: 'code:JSON'
       },
-
       language: {
         type: String,
         defaultValue: 'en',
@@ -184,7 +189,17 @@
         type: String,
         defaultValue: '<px-data-table-column name="first"></px-data-table-column>'
       }
-
+    },
+    ready : function(){
+      //format data
+      for(r in this.demoProps.tableData.value){
+        if(this.demoProps.tableData.value[r].rowDetails){
+          this.demoProps.tableData.value[r].rowDetails.data = '<og-wellreview-detail-row alert-unclaimed="6" open-cases="12" field="Bakken Field"></og-wellreview-detail-row>';
+        }
+        this.demoProps.tableData.value[r].status = '<og-status-col value ="1"></og-status-col>';
+        this.demoProps.tableData.value[r].oil = '<og-value-col value ="1" trend="+" correlation="+" trendDir="up"></og-value-col>';
+      }
+      console.log('ready');
     }
 
   });

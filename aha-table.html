@@ -99,7 +99,7 @@
               <template id="cellRepeat" is="dom-if" if="{{!_isEqual(column.type, 'selected')}}">
                 <template is="dom-if" if="{{_showColumn(column)}}">
                   <td>
-                  <px-data-table-cell
+                  <px-data-table-cell class="og-table-cell"
                       on-save="_save"
                       row-highlighted="[[internalRow._highlight]]"
                       cell-highlighted="[[_getHighlightValue(internalRow, column, column.highlightdefined)]]"
@@ -123,10 +123,10 @@
           </tr>
           <!--Description if available-->
           <template is="dom-if" if="{{_showRowDetails(internalRow)}}">
-            <tr class="detail-row hidden">
-              <td class="detail-col" clospan ="{{_rowDetailColumn(internalRow)}}" style="border:0px"></td>
-              <td colspan$="{{_rowDetailColSpan(internalRow)}}" class="detail-col" style="border:0px">
-                <px-data-table-cell
+            <tr class="tr-detail hidden">
+              <td class="td-detail" clospan ="{{_rowDetailColumn(internalRow)}}"></td>
+              <td colspan$="{{_rowDetailColSpan(internalRow)}}" class="td-detail">
+                <px-data-table-cell class="og-table-cell"
                     row-highlighted="[[internalRow._highlight]]"
                     cell-highlighted="false"
                     cell-selected="[[internalRow._selected]]"
