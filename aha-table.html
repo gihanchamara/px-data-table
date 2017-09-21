@@ -85,6 +85,7 @@
               <!-- selected column checkbox or radio button -->
               <template is="dom-if" if="{{_isEqual(column.type, 'selected')}}">
                 <td role="gridcell" class$="{{_getSelectedCellClass(internalRow._selected, internalRow._highlight)}}" hidden$="!_showColumn(column)" on-tap="_clickRow">
+                  <span hidden="true">{{column.name}}</span>
                   <span class="flex flex--middle">
                     <template is="dom-if" if="{{!singleSelect}}">
                       <input role="checkbox" aria-label="Click to select row" type="checkbox" checked="{{internalRow._selected::change}}"/>
@@ -1636,7 +1637,7 @@
       }.bind(this)));
     },
     _showHideDetails:function(event){
-      let currentRow = event.currentTarget.parentNode.parentNode;
+      let currentRow = event.currentTarget.closest('tr');
       if(currentRow != this.expandedRow){
         this._expandedRow(currentRow);
         if(this.expandedRow){
@@ -1668,9 +1669,15 @@
       return (typeof param.row.rowDetails !== 'undefined');
     },
     _rowDetailColSpan:function(param){
+      if(typeof param.row.rowDetails === 'undefined'){
+        return 0;
+      }
       return param.row.rowDetails.value.colSpan;
     },
     _rowDetailColumn:function(param){
+      if(typeof param.row.rowDetails === 'undefined'){
+        return 0;
+      }
       return param.row.rowDetails.value.colPad;
     }
 
