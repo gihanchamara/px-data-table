@@ -1,5 +1,12 @@
+:host{
+  $inuit-table-border-width : 0px;
+  $inuit-table-border-width : 0px;
+  --px-data-table-cell-border-top-size : 0px;
+  --px-data-table-cell-border-bottm-size:0px;
+}
+
 .table.aha-table {
-    background: rgb(231,234,237) !important;
+    background: var(--og-table-background-color, rgb(231,234,237))!important;
 }
 
 .col-header{
@@ -45,15 +52,15 @@
   padding-bottom: 0;
 }
 .expanded-row{
-  background: white;
+  background: var(--px-data-table-cell-background-color--selected,white);
 }
 
 .tr-detail{
-  background:white;  
+  background:var(--px-data-table-cell-background-color--selected,white);
 }
 
 .td-detail{
-  background: white;
+  background:var(--px-data-table-cell-background-color--selected,white);
   border: 0px !important;
 }
 

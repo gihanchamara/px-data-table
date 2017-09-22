@@ -90,8 +90,8 @@ $inuit-table-separator-color: var(--px-data-table-separator-color, gray);
 :host(.selected) {
   background-color: var(--px-data-table-cell-background-color--selected, blue);
   color: var(--px-data-table-cell-text-color--selected, white);
-  border-top: $inuit-table-border-width double var(--px-data-table-cell-border-color--selected, blue) !important;
-  border-bottom: $inuit-table-border-width double var(--px-data-table-cell-border-color--selected, blue) !important;
+  border-top: var(--px-data-table-cell-border-top-size,$inuit-table-border-width) double var(--px-data-table-cell-border-color--selected, blue) !important;
+  border-bottom: var(--px-data-table-cell-border-bottm-size,$inuit-table-border-width) double var(--px-data-table-cell-border-color--selected, blue) !important;
 
 }
 

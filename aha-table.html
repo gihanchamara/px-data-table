@@ -57,22 +57,23 @@
         <!-- Second Header (filter/select all) -->
         <tr class$="{{_getSecondHeaderClass(_enableFilterRow)}}" role="row">
           <template is="dom-repeat" items="{{meta}}" as="column" id="filterRepeat">
-            <td class$="{{_getFilterHeaderClass(column)}}" role="gridcell" hidden$="{{column.hide}}">
-              <!-- select all checkbox -->
-              <template is="dom-if" if="{{_isEqual(column.type, 'selected')}}">
-                <span class="flex" hidden$="{{column.hide}}">
-                  <template is="dom-if" if="{{!singleSelect}}">
-                    <input id="selectAllCheckbox" role="checkbox" aria-label="Click to select or deselect all rows" type="checkbox" on-change="_clickSelectAll"/>
+              <template is="dom-if" if="{{_showColumn(column)}}">
+                <td class$="{{_getFilterHeaderClass(column)}}" role="gridcell" hidden$="{{column.hide}}">
+                  <!-- select all checkbox -->
+                  <template is="dom-if" if="{{_isEqual(column.type, 'selected')}}">
+                    <span class="flex" hidden$="{{column.hide}}">
+                      <template is="dom-if" if="{{!singleSelect}}">
+                        <input id="selectAllCheckbox" role="checkbox" aria-label="Click to select or deselect all rows" type="checkbox" on-change="_clickSelectAll"/>
+                      </template>
+                    </span>
                   </template>
-                </span>
-              </template>
 
-              <!-- filter entry -->
-              <template is="dom-if" if="{{_isFilterableColumn(column, filterable)}}">
-                <input role="textbox" aria-label="Enter text to filter column" placeholder="{{localize('Filter')}}" class="text-input text-input--filter" type="text" on-input="_filter" />
-              </template>
-
-            </td>
+                  <!-- filter entry -->
+                  <template is="dom-if" if="{{_isFilterableColumn(column, filterable)}}">
+                    <input role="textbox" aria-label="Enter text to filter column" placeholder="{{localize('Filter')}}" class="text-input text-input--filter" type="text" on-input="_filter" />
+                  </template>
+                </td>
+            </template>
           </template>
         </tr>
         <!-- Data rows -->
@@ -1503,7 +1504,7 @@
       return highlightObj;
     },
     _isFilterableColumn: function(column) {
-      return !column.selectAll && column.filterable && this.filterable && !column.hide;
+      return !column.selectAll && column.filterable && this.filterable && !column.hide && (column.name !== 'rowDetails');
     },
     _readContent: function(row, column) {
       var datum = this._getInternalDataAt(row, column.name);

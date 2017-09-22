@@ -212,12 +212,6 @@ label {
   margin-left: $inuit-base-spacing-unit--small;
 }
 
-.selected-cell__selected.selected-cell__selected {
-  background-color: var(--px-data-table-cell-background-color--selected, blue);
-  border-top: 1px double var(--px-data-table-cell-border-color--selected, blue) !important;
-  border-bottom: 1px double var(--px-data-table-cell-border-color--selected, blue) !important;
-}
-
 .cell--value__validation-failed{
   border: $inuit-table-border-width double var(--px-data-table-cell-border-validation--failed, red) !important;
 }

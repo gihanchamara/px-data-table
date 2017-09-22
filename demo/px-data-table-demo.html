@@ -21,7 +21,13 @@
 <dom-module id="px-data-table-demo">
   <template>
     <style include="px-demo-styles" is="custom-style"></style>
-
+    <style>
+      :host{
+        --px-data-table-cell-background-color--selected : white;
+        --og-table-background-color : rgb(231,234,237);
+        $inuit-table-border-width:0;
+      }
+    </style>
     <!-- Header -->
     <px-demo-header
         module-name="px-data-table"
@@ -51,8 +57,7 @@
               show-column-chooser="{{props.showColumnChooser.value}}"
               hide-pagination-control="{{props.hidePaginationControl.value}}"
 
-              language="{{props.language.value}}">
-              <px-data-table-column name="first" placeholder="First Name" filterable sortable editable></px-data-table-column>
+              language="{{props.language.value}}">              
               <px-data-table-column name="status" placeholder="Status" filterable sortable type="html"></px-data-table-column>
               <px-data-table-column name="oil" placeholder="oil" filterable sortable type="html"></px-data-table-column>
           </px-data-table>
@@ -145,31 +150,31 @@
 
       filterable: {
         type: Boolean,
-        defaultValue: false,
+        defaultValue: true,
         inputType: 'toggle'
       },
 
       sortable: {
         type: Boolean,
-        defaultValue: false,
+        defaultValue: true,
         inputType: 'toggle'
       },
 
       selectable: {
         type: Boolean,
-        defaultValue: false,
+        defaultValue: true,
         inputType: 'toggle'
       },
 
       singleSelect: {
         type: Boolean,
-        defaultValue: false,
+        defaultValue: true,
         inputType: 'toggle'
       },
 
       showColumnChooser: {
         type: Boolean,
-        defaultValue: false,
+        defaultValue: true,
         inputType: 'toggle'
       },
 
