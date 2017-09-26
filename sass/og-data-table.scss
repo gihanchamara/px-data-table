@@ -43,10 +43,6 @@ td.aha-table.selected-cell__selected,  td.aha-table.selected-cell__selected ~ td
 .table.aha-table .td.aha-table, .table.aha-table td.aha-table {
   border-bottom:0px;
 }
-/*fix alignment of html content*/
-.px-data-table-cell-0 .viewing.px-data-table-cell {
-  height: 0px;
-}
 
 /*Hide pagination padding*/
 .pagination.aha-table {
