@@ -24,8 +24,12 @@
     padding-bottom: 0.5em;
 }
 
-.table.aha-table .td.aha-table, .table.aha-table .th.aha-table, .table.aha-table td.aha-table, .table.aha-table th.aha-table {
-    padding: 0px;
+td.aha-table.selected-cell__selected,  td.aha-table.selected-cell__selected ~ td.aha-table{
+  background: var(--px-data-table-cell-background-color--selected,white);
+}
+
+td.aha-table{
+  padding:0px !important;
 }
 
 .table.aha-table tr.aha-table:last-of-type .td.aha-table, .table.aha-table tr.aha-table:last-of-type td.aha-table {
@@ -37,7 +41,7 @@
   display: none;
 }
 
-/*Fix border*/
+/*Fix border in detailed row*/
 .table.aha-table .td.aha-table, .table.aha-table td.aha-table {
   border-bottom:0px;
 }
@@ -51,16 +55,12 @@
   padding-top: 0;
   padding-bottom: 0;
 }
-.expanded-row{
-  background: var(--px-data-table-cell-background-color--selected,white);
-}
-
-.tr-detail{
-  background:var(--px-data-table-cell-background-color--selected,white);
+.expanded-row, .tr-detail{
+  background:var(--og-table-detail-background-color,var(--px-data-table-cell-background-color--selected,white));
 }
 
 .td-detail{
-  background:var(--px-data-table-cell-background-color--selected,white);
+  background:var(--og-table-detail-background-color,var(--px-data-table-cell-background-color--selected,white));
   border: 0px !important;
 }
 
