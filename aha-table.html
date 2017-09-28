@@ -1552,12 +1552,16 @@
       return source === target;
     },
     _getHeaderClass: function(item) {
+
       var classList = ['th', 'aha-' + item.name + '-th', 'u-p0'];
       if(this.sortable && item.sortable) {
         classList.push('sortable');
       }
       if(this.enableColumnReorder && item.type !== 'selected') {
         classList.push('moveable');
+      }
+      if(item.getAttribute('align')){
+        classList.push('th-align-'+item.getAttribute('align'));
       }
       return classList.join(' ');
     },

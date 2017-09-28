@@ -18,6 +18,7 @@
   border : 0px !important;
   padding: 0px !important;
   height: inherit;
+  display: block !important;
 }
 
 .header--container.aha-table {
@@ -59,3 +60,16 @@ td.aha-table.selected-cell__selected,  td.aha-table.selected-cell__selected ~ td
 }
 
 .para { font-size: 1.2rem; }
+
+.th-align-left{
+  text-align: left !important;
+}
+.th-align-center{
+  text-align: center !important;
+}
+.th-align-right{
+  text-align: right !important;
+}
+.column-head{
+  width: 100%;
+}
